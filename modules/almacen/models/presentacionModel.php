@@ -10,7 +10,7 @@ class presentacionModel extends Model {
         $stmt=$this->_db->query("CALL consulta_presentaciones_proc();")->fetchall(PDO::FETCH_ASSOC);
         return $stmt;
       }catch(PDOException $e){
-      echo "Error en la consulta".$e.->getMessage();
+      echo "Error en la consulta".$e->getMessage();
       return null;
       }
     }
@@ -19,7 +19,7 @@ class presentacionModel extends Model {
       try {
         $stmt=$this->_db->prepare('CALL insertar_presentaciones_proc(":desc");');
         $result=$stmt->execute(array(
-          ":desc"=>$datos[0];
+          ":desc"=>$datos[0]
         ));
         return $result;
       } catch (PDOException $e) {
@@ -32,7 +32,7 @@ class presentacionModel extends Model {
       try {
         $stmt=$this->_db->prepare('call eliminar_presentaciones_proc(:id);');
         $result=$stmt->execute(array(
-          ":id"=>$datos[0];
+          ":id"=>$datos[0]
         ));
       } catch (Exception $e) {
          echo"Error de la eliminacion".$e->getMessage();
@@ -44,8 +44,8 @@ class presentacionModel extends Model {
       try {
         $stmt=$this->_db->prepare('CALL modificar_presentaciones_proc(:id,":desc",:estado);');
           $result=$stmt->execute(array(
-          ":id"=>$datos[0];
-          ":desc"=>$datos[1];
+          ":id"=>$datos[0],
+          ":desc"=>$datos[1]
         ));
       } catch (Exception $e) {
          echo"Error de la modificacion".$e->getMessage();

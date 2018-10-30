@@ -9,6 +9,7 @@ class proveedoresController extends comprasController
     }
     public function index()
     {
+        // print_r($this->_sql->tipo_cont("Per"));exit;
         $this->_view->setJs(array("js"));
         $paginador = new Paginador();
         $this->_view->assign("title", "Proveedores");
@@ -30,9 +31,19 @@ class proveedoresController extends comprasController
     }
     public function insertar()
     {
-        $this->_sql->insertar(
-            array(
-                
-            ));
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            
+        } else {
+            echo "Error Processing Request";
+        }
     }
+    public function tipo_contr_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            echo json_encode($this->_sql->tipo_cont($this->getText("q")));
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+    
 }

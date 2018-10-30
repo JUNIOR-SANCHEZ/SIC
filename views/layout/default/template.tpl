@@ -3,38 +3,29 @@
 
 <head>
 	<meta charset="utf-8">
-	<link rel="icon" type="image/png" href="{$_layoutParams.root}public/img/images/escudo.png" />
+	<!-- <link rel="icon" type="image/png" href="{$_layoutParams.root}public/img/images/escudo.png" /> -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
 	<title>{$titulo|default:""}</title>
-
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	<!-- Bootstrap 3.3.7 -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="{$_layoutParams.ruta_css}bootstrap.min.css">
 	<!-- Font Awesome -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}font-awesome/css/font-awesome.min.css">
-	<!-- Ionicons -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}Ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="{$_layoutParams.ruta_css}font-awesome.min.css">
 	<!-- Theme style -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_dist}css/AdminLTE.min.css">
+	<link rel="stylesheet" href="{$_layoutParams.ruta_css}AdminLTE.min.css">
 	<!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_dist}css/skins/_all-skins.min.css">
-	<!-- Morris chart -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}morris.js/morris.css">
-	<!-- jvectormap -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}jvectormap/jquery-jvectormap.css">
-	<!-- Date Picker -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
-	<!-- Daterange picker -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_assets}bootstrap-daterangepicker/daterangepicker.css">
-	<!-- bootstrap wysihtml5 - text editor -->
-	<link rel="stylesheet" href="{$_layoutParams.ruta_plugins}bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+	<link rel="stylesheet" href="{$_layoutParams.ruta_css}_all-skins.min.css">
+
+	<link rel="stylesheet" href="{$_layoutParams.ruta_css}jquery-ui.css">
+
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 	<!-- RUTAS AUTOMATICAS CSS -->
 	{if isset($_layoutParams.css) && count($_layoutParams.css)} {foreach item=css from=$_layoutParams.css}
-	<link href="{$css}" rel="stylesheet"> {/foreach} {/if}
+	<link href="{$css}" rel="stylesheet">
+	{/foreach} {/if}
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
@@ -46,11 +37,17 @@
 		<!--  -->
 		<!-- Content Wrapper. Contains page content -->
 		<div class="content-wrapper">
+
+
 			{include file=$_contenido}
+
+
+			{if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if}
 		</div>
+
 	</div>
 	<!-- FOOTER -->
-	<!-- {if isset($widgets.footer)} {foreach item=tp from=$widgets.footer } {$tp} {/foreach} {/if} -->
+
 	<aside class="control-sidebar control-sidebar-dark">
 		<!-- Create the tabs -->
 		<ul class="nav nav-tabs nav-justified control-sidebar-tabs">
@@ -240,51 +237,38 @@
 		</div>
 	</aside>
 
-	<script src="{$_layoutParams.ruta_assets}jquery/dist/jquery.min.js"></script>
+	<script src="{$_layoutParams.ruta_js}jquery.min.js"></script>
 	<!-- jQuery UI 1.11.4 -->
-	<script src="{$_layoutParams.ruta_assets}jquery-ui/jquery-ui.min.js"></script>
+	<script src="{$_layoutParams.ruta_js}jquery-ui.js"></script>
 	<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
 	<script>
 		$.widget.bridge('uibutton', $.ui.button);
 	</script>
 	<!-- Bootstrap 3.3.7 -->
-	<script src="{$_layoutParams.ruta_assets}bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- Morris.js charts -->
-	<script src="{$_layoutParams.ruta_assets}raphael/raphael.min.js"></script>
-	<script src="{$_layoutParams.ruta_assets}morris.js/morris.min.js"></script>
-	<!-- Sparkline -->
-	<script src="{$_layoutParams.ruta_assets}jquery-sparkline/dist/jquery.sparkline.min.js"></script>
-	<!-- jvectormap -->
-	<script src="{$_layoutParams.ruta_plugins}jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-	<script src="{$_layoutParams.ruta_plugins}jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-	<!-- jQuery Knob Chart -->
-	<script src="{$_layoutParams.ruta_assets}jquery-knob/dist/jquery.knob.min.js"></script>
-	<!-- daterangepicker -->
-	<script src="{$_layoutParams.ruta_assets}moment/min/moment.min.js"></script>
-	<script src="{$_layoutParams.ruta_assets}bootstrap-daterangepicker/daterangepicker.js"></script>
-	<!-- datepicker -->
-	<script src="{$_layoutParams.ruta_assets}bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
-	<!-- Bootstrap WYSIHTML5 -->
-	<script src="{$_layoutParams.ruta_plugins}bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-	<!-- Slimscroll -->
-	<script src="{$_layoutParams.ruta_assets}jquery-slimscroll/jquery.slimscroll.min.js"></script>
-	<!-- FastClick -->
-	<script src="{$_layoutParams.ruta_assets}fastclick/lib/fastclick.js"></script>
+	<script src="{$_layoutParams.ruta_js}bootstrap.min.js"></script>
 	<!-- AdminLTE App -->
-	<script src="{$_layoutParams.ruta_dist}js/adminlte.min.js"></script>
-	<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-	<script src="{$_layoutParams.ruta_dist}js/pages/dashboard.js"></script>
+	<script src="{$_layoutParams.ruta_js}adminlte.min.js"></script>
 	<!-- AdminLTE for demo purposes -->
-	<script src="{$_layoutParams.ruta_dist}js/demo.js"></script>
 
+
+	<script type="text/javascript">
+		var _root_ = '{$_layoutParams.root}';
+	</script>
 
 	<!-- RUTAS AUTOMATICAS DE LIBRERIAS JS QUE NECESITEMOS EN LA APLICACION -->
-	{if isset($_layoutParams.jsPlugin) && count($_layoutParams.jsPlugin)} {foreach item=js
-	from=$_layoutParams.jsPlugin}
-	<script src="{$js}" type="text/javascript"></script> {/foreach} {/if}
+	{if isset($_layoutParams.jsPlugin) && count($_layoutParams.jsPlugin)}
+	{foreach item=js from=$_layoutParams.jsPlugin}
+	<script src="{$js}" type="text/javascript"></script>
+	{/foreach}
+	{/if}
+
+	
 	<!-- RUTAS AUTOMATICAS DE ARCHIVO JS CREADOS -->
-	{if isset($_layoutParams.js) && count($_layoutParams.js)} {foreach item=js from=$_layoutParams.js}
-	<script src="{$js}" type="text/javascript"></script> {/foreach} {/if}
+	{if isset($_layoutParams.js) && count($_layoutParams.js)}
+	{foreach item=js from=$_layoutParams.js}
+	<script src="{$js}" type="text/javascript"></script>
+	{/foreach}
+	{/if}
 	<!-- SECCION DEL FOOTER-->
 
 </body>

@@ -10,7 +10,7 @@ class marcasModel extends Model {
         $stmt=$this->_db->query("CALL consulta_marcas_proc();")->fetchall(PDO::FETCH_ASSOC);
         return $stmt;
       }catch(PDOException $e){
-      echo "Error en la consulta".$e.->getMessage();
+      echo "Error en la consulta".$e->getMessage();
       return null;
       }
     }
@@ -19,7 +19,7 @@ class marcasModel extends Model {
       try {
         $stmt=$this->_db->prepare('CALL insertar_marcas_proc(":desc");');
         $result=$stmt->execute(array(
-          ":desc"=>$datos[0];
+          ":desc"=>$datos[0]
         ));
         return $result;
       } catch (PDOException $e) {
@@ -32,7 +32,7 @@ class marcasModel extends Model {
       try {
         $stmt=$this->_db->prepare('call eliminar_marcas_proc(:id);');
         $result=$stmt->execute(array(
-          ":id"=>$datos[0];
+          ":id"=>$datos[0]
         ));
       } catch (Exception $e) {
          echo"Error de la eliminacion".$e->getMessage();
@@ -44,8 +44,8 @@ class marcasModel extends Model {
       try {
         $stmt=$this->_db->prepare('CALL modificar_marcas_proc(:id,":desc");');
           $result=$stmt->execute(array(
-          ":id"=>$datos[0];
-          ":desc"=>$datos[1];
+          ":id"=>$datos[0],
+          ":desc"=>$datos[1],
         ));
       } catch (Exception $e) {
          echo"Error de la modificacion".$e->getMessage();
