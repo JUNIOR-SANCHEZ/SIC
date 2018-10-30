@@ -72,16 +72,21 @@
                     <form class="form-horizontal">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="inputEmail3" class="col-sm-2 control-label">Tipo de Contribuyente</label>
+                                <label for="tags" class="col-sm-2 control-label">Tipo de Contribuyente</label>
 
                                 <div class="col-sm-10">
-                                    <input type="text" name="txttipo_contr" class="form-control" id="txttipo_contr" placeholder="Email">
+                                    <div class="ui-widget">
+                                        <input type="text" name="txttipo_contr" class="form-control" id="tags"
+                                            placeholder="Email">
+                                    </div>
                                 </div>
+                                
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 
                                 <div class="col-sm-10">
+
                                     <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
                                 </div>
                             </div>

@@ -10,8 +10,8 @@ $(document).ready(function(){
         var pag = "pagina=" + $(this).attr("pagina");
         paginacion(pag);
     });
-    
-    $("#txttipo_contr").autocomplete({
+     
+    $("#tags").autocomplete({
         source: function(request,response){
             var ruta = _root_ + "compras/proveedores/tipo_contr_ajax";
             $.ajax({
