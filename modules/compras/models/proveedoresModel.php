@@ -83,7 +83,7 @@ class proveedoresModel extends Model
         }
     }
 
-    public function tipo_cont($dato)
+    public function autocomplete($dato)
     {
         try {
             $array = array();
@@ -95,6 +95,21 @@ class proveedoresModel extends Model
                 $array[]=$row["description"];
             }
             return $array;
+        } catch (PDOException $e) {
+            echo "Error en la consulta " . $e->getMessage();
+            return null;
+        }
+    }
+
+    public function consulta_fila($dato)
+    {
+        try {
+            $array = array();
+            $sql = "CALL tipo_contribuyente_consulta_x_contenido_proc(:data);";
+            $stmt = $this->_db->prepare($sql);
+            $stmt->execute(array(":data"=>$dato));
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
         } catch (PDOException $e) {
             echo "Error en la consulta " . $e->getMessage();
             return null;

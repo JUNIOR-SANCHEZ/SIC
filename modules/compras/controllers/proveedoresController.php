@@ -6,6 +6,7 @@ class proveedoresController extends comprasController
     {
         parent::__construct();
         $this->_sql = $this->loadModel("proveedores");
+        $this->_view->setJsPlugin(array("jquery.inputmask"));
     }
     public function index()
     {
@@ -17,7 +18,7 @@ class proveedoresController extends comprasController
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar("index", "compras", "proveedores");
     }
-    public function consulta_paginacion_ajax()
+    public function consulta_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
             $pagina = $this->getInt('pagina');
@@ -37,10 +38,18 @@ class proveedoresController extends comprasController
             echo "Error Processing Request";
         }
     }
-    public function tipo_contr_ajax()
+    public function autocomplete_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-            echo json_encode($this->_sql->tipo_cont($this->getText("q")));
+            echo json_encode($this->_sql->autocomplete($this->getText("q")));
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+    public function consulta_fila_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            echo json_encode($this->_sql->consulta_fila($this->getText("dato")));
         } else {
             echo "Error Processing Request";
         }

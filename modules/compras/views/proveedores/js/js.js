@@ -1,6 +1,8 @@
-$(document).ready(function(){
+$(document).ready(function () {
+    $('[data-mask]').inputmask();
+
     function paginacion(dato) {
-        $.post(_root_ + "compras/proveedores/consulta_paginacion_ajax", dato,
+        $.post(_root_ + "compras/proveedores/consulta_ajax", dato,
             function (response) {
                 $("#contenedor").html("");
                 $("#contenedor").html(response);
@@ -10,23 +12,30 @@ $(document).ready(function(){
         var pag = "pagina=" + $(this).attr("pagina");
         paginacion(pag);
     });
-     
-    $("#tags").autocomplete({
-        source: function(request,response){
-            var ruta = _root_ + "compras/proveedores/tipo_contr_ajax";
+
+    $("#inp-cont-ins").autocomplete({
+        source: function (request, response) {
+            var ruta = _root_ + "compras/proveedores/autocomplete_ajax";
             $.ajax({
-                url:ruta,
-                dataType:"json",
-                data:{q:request.term},
-                success:function(data){
+                url: ruta,
+                dataType: "json",
+                data: {
+                    q: request.term
+                },
+                success: function (data) {
                     response(data);
                 }
             });
         },
-        minLength:1,
-        select:function(event,ui){
-            alert("selecciono: "+ui.item.label);
+        minLength: 1,
+        select: function (event, ui) {
+            $.post(_root_ + "compras/proveedores/consulta_fila_ajax", {
+                    dato: ui.item.label
+                },
+                function (data) {
+                    $("#hiddent-cont-ins").val(data.id);
+                },"json");
         }
     });
-    
+
 });
