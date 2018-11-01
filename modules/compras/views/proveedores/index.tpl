@@ -12,8 +12,14 @@
     <div class="row">
 
         <div class="col-sm-12">
-            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-ins">Nuevo
-                Proveedor</button>
+            <a href="{$_layoutParams.root}compras/proveedores/exel" class="btn btn-info"> 
+            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+             Exel
+            </a>
+            <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-ins">
+                <i class="fa fa-plus    "></i>
+                Nuevo Proveedor
+            </button>
         </div>
         <hr>
         <div id="contenedor">
@@ -77,7 +83,8 @@
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Tipo Contribuyente</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtcontribuyente" class="form-control" id="inp-cont-ins" placeholder="Tipo contribuyente">
+                                    <input type="text" name="txtcontribuyente" class="form-control" id="inp-cont-ins"
+                                        placeholder="Tipo contribuyente">
                                 </div>
                             </div>
                             <div class="form-group">
