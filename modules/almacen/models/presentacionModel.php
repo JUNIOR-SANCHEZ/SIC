@@ -52,4 +52,35 @@ class presentacionModel extends Model {
         return 0;
       }
     }
+    public function autocomplete($dato)
+    {
+        try {
+            $array = array();
+            $sql = "CALL descripcion_consulta_presentaciones_proc(:data);";
+            $stmt = $this->_db->prepare($sql);
+            $stmt->execute(array(":data"=>$dato));
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($result as $row){
+                $array[]=$row["description"];
+            }
+            return $array;
+        } catch (PDOException $e) {
+            echo "Error en la consulta " . $e->getMessage();
+            return null;
+        }
+    }
+    public function consulta_fila($dato)
+    {
+        try {
+            $array = array();
+            $sql = "CALL descripcion_consulta_presentaciones_x_contenido_proc(:data);";
+            $stmt = $this->_db->prepare($sql);
+            $stmt->execute(array(":data"=>$dato));
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result;
+        } catch (PDOException $e) {
+            echo "Error en la consulta " . $e->getMessage();
+            return null;
+        }
+    }
 }
