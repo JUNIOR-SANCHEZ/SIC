@@ -6,14 +6,14 @@ class proveedoresController extends comprasController
     {
         parent::__construct();
         $this->_sql = $this->loadModel("proveedores");
-        $this->_view->setJsPlugin(array("jquery.inputmask"));
+        $this->_view->setJsPlugin(array("jquery.inputmask", "jqBootstrapValidation"));
     }
     public function index()
     {
-        // print_r($this->_sql->tipo_cont("Per"));exit;
         $this->_view->setJs(array("js"));
         $paginador = new Paginador();
         $this->_view->assign("title", "Proveedores");
+        $this->_view->assign("tipo_cont",$this->_sql->contribuyente_lista());
         $this->_view->assign('consulta', $paginador->paginar($this->_sql->consulta(), false));
         $this->_view->assign('paginador', $paginador->getView('paginacion_ajax'));
         $this->_view->renderizar("index", "compras", "proveedores");
@@ -30,10 +30,45 @@ class proveedoresController extends comprasController
             echo "Error Processing Request";
         }
     }
-    public function insertar()
+
+    public function consulta_id_ajax($id)
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $result = $this->_sql->consulta_id($id);
+            echo json_encode($result);
+            exit;
+
+            
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+    public function insertar_ajax()
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
+            if ($this->getInt("contribuyente_id") == 0) {
+                echo "Debese leccionar un contribuyente existente";
+                exit;
+            }
+            $result = $this->_sql->insertar(
+                array(
+                    $this->getText("txtruc"),
+                    $this->getText("txtempresa"),
+                    $this->getText("txtrepresentante"),
+                    $this->getText("txtdireccion"),
+                    $this->getText("txtemail"),
+                    $this->getText("txttelefono"),
+                    $this->getText("txtcelular"),
+                    $this->getInt("contribuyente_id"),
+                )
+            );
+            if (!$result) {
+                echo "Ha ocurrido un error inexperado";
+                exit;
+            }
+            echo "Se registro " . $result . " fila(s)";
+            exit;
         } else {
             echo "Error Processing Request";
         }
@@ -56,9 +91,38 @@ class proveedoresController extends comprasController
     }
     public function exel()
     {
-        // echo ROOT . "public" . DS . "files" . DS . "excelreport" . DS . "personal_excel.php <br>";
-        require_once ROOT . "public" . DS . "files" . DS . "excelreport"  . DS . "01simple-download-xlsx.php";
+        require_once ROOT . "public" . DS . "files" . DS . "excelreport" . DS . "01simple-download-xlsx.php";
+    }
 
+    public function estado_ajax(Type $var = null)
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            // print_r($_POST);exit;
+            $result = $this->_sql->estado(array(
+                $this->getInt("id"),
+                $this->getInt("check"),
+            ));
+
+            if (!$result) {
+                echo "Ha ocurrido un error";
+            }
+            echo "Se actualizo el estado ";
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+
+    public function eliminar_ajax($id)
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $result = $this->_sql->eliminar($id);
+            if (!$result) {
+                echo "Ha ocurrido un error";
+            }
+            echo "Se elimino " . $result . " fila(s)";
+        } else {
+            echo "Error Processing Request";
+        }
     }
 
 }

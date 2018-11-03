@@ -32,7 +32,15 @@
                         <td>{$x["email"]}</td>
                         <td>{$x["phone"]}</td>
                         <td>{$x["mobile"]|default:"null"}</td>
-                        <td>{if $x["state"]== 0}Inactivo{else}Activo{/if}</td>
+                        <td>
+                            <input type="checkbox" class="checked" style="display: none;" data-id="{$x['id']}" id="chec_{$x['id']}"
+                                {if $x['state']==1} checked {/if}/> {if $x["state"]==0} <label class="label label-danger"
+                                for="chec_{$x['id']}">Inactivo</label>
+                            {else}
+                            <label for="chec_{$x['id']}" class="label label-success">Activo</label>
+                            {/if}
+                        </td>
+                       
                     </tr>
                     {/foreach}
                 </table>

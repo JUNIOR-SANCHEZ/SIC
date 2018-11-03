@@ -10,11 +10,10 @@
 </section>
 <section class="content">
     <div class="row">
-
         <div class="col-sm-12">
-            <a href="{$_layoutParams.root}compras/proveedores/exel" class="btn btn-info"> 
-            <i class="fa fa-file-excel-o" aria-hidden="true"></i>
-             Exel
+            <a href="{$_layoutParams.root}compras/proveedores/exel" class="btn btn-info">
+                <i class="fa fa-file-excel-o" aria-hidden="true"></i>
+                Exel
             </a>
             <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#modal-ins">
                 <i class="fa fa-plus    "></i>
@@ -50,14 +49,23 @@
                                 {foreach item=x from=$consulta}
                                 <tr>
                                     <td>{$x["id"]}</td>
-                                    <td><a href="">{$x["ruc"]}</a></td>
+                                    <td><a href="{$_layoutParams.root}compras/proveedores/consulta_id_ajax/{$x['id']}"
+                                            class="btn-select">{$x["ruc"]}</a></td>
                                     <td>{$x["business_name"]}</td>
                                     <td>{$x["representative"]}</td>
                                     <td>{$x["address"]}</td>
                                     <td>{$x["email"]}</td>
                                     <td>{$x["phone"]}</td>
                                     <td>{$x["mobile"]|default:"null"}</td>
-                                    <td>{if $x["state"]== 0}Inactivo{else}Activo{/if}</td>
+                                    <td>
+                                        <input type="checkbox" class="checked" style="display: none;" data-id="{$x['id']}"
+                                            id="chec_{$x['id']}" {if $x['state']==1} checked {/if}/> {if $x["state"]==0}
+                                            <label class="label label-danger" for="chec_{$x['id']}">Inactivo</label>
+                                        {else}
+                                        <label for="chec_{$x['id']}" class="label label-success">Activo</label>
+                                        {/if}
+                                    </td>
+
                                 </tr>
                                 {/foreach}
                             </table>
@@ -77,20 +85,25 @@
                     <h4 class="modal-title">Nuevo Proveedor</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" id="form-ins" method="{$_layoutParams.root}compras/proveedores/insertar_ajax">
                         <input type="hidden" name="contribuyente_id" value="0" id="hiddent-cont-ins">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Tipo Contribuyente</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtcontribuyente" class="form-control" id="inp-cont-ins"
-                                        placeholder="Tipo contribuyente">
+                                    <select class="form-control custom-select" name="" id="">
+                                        <option value="0">Selección:</option>
+                                        {foreach item=x from=$tipo_cont}
+                                        <option value="{$x['id']}">{$x["description"]}</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Ruc</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtruc" class="form-control" id="inp-ruc-ins" placeholder="Ruc">
+                                    <input type="text" name="txtruc" class="form-control" id="inp-ruc-ins" placeholder="Ruc"
+                                        required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -125,23 +138,25 @@
                                 <label for="inputPassword3" class="col-sm-4 control-label">Teléfono</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="txttelefono" class="form-control" id="inp-tel-ins"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        placeholder="Teléfono" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-4 control-label">Celular</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="txtcelular" class="form-control" id="inp-cel-ins"
-                                        data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        placeholder="Celular" data-inputmask='"mask": "(999) 999-9999"' data-mask>
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times-circle-o"></i>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="$('#form-ins')[0].reset();"><i
+                            class="fa fa-times-circle-o"></i>
                         Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-primary" id="btn-guardar-ins"><i class="fa fa-save"></i>
+                        Guardar</button>
                 </div>
             </div>
         </div>

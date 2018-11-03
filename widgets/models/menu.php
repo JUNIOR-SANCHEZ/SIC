@@ -62,6 +62,7 @@ class menuModelWidget extends Model
                 ),
             ),
         );
+       
         $menus["sidenav"][] = array(
             "id" => "documento",
             "title" => "Tipo de documento",
@@ -118,6 +119,20 @@ class menuModelWidget extends Model
                 "sub-menu" => array(),
             );
         }
+        $menus["sidenav"][] = array(
+            "id" => "reportes",
+            "title" => "Reportes de compra",
+            "icon" => "fa-pie-chart",
+            "sub-menu" => array(
+                array(
+                    "id" => "compra",
+                    "title" => "Reporte General",
+                    "icon" => " fa-circle-o",
+                    "link" => BASE_URL . "compras/reporte",
+                ),
+               
+            ),
+        );
         $menus["top"] = array();
         return $menus[$menu];
     }
