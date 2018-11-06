@@ -37,8 +37,6 @@ class proveedoresController extends comprasController
             $result = $this->_sql->consulta_id($id);
             echo json_encode($result);
             exit;
-
-            
         } else {
             echo "Error Processing Request";
         }
@@ -47,8 +45,8 @@ class proveedoresController extends comprasController
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
 
-            if ($this->getInt("contribuyente_id") == 0) {
-                echo "Debese leccionar un contribuyente existente";
+            if ($this->getInt("cb_contribuyente") == 0) {
+                echo json_encode(array("error"=>"Debese leccionar un contribuyente existente"));
                 exit;
             }
             $result = $this->_sql->insertar(
@@ -60,14 +58,14 @@ class proveedoresController extends comprasController
                     $this->getText("txtemail"),
                     $this->getText("txttelefono"),
                     $this->getText("txtcelular"),
-                    $this->getInt("contribuyente_id"),
+                    $this->getInt("cb_contribuyente"),
                 )
             );
             if (!$result) {
-                echo "Ha ocurrido un error inexperado";
+                echo json_encode(array("error"=>"Ha ocurrido un error inexperado"));
                 exit;
             }
-            echo "Se registro " . $result . " fila(s)";
+            echo json_encode("Se registro " . $result . " fila(s)");
             exit;
         } else {
             echo "Error Processing Request";
@@ -120,6 +118,37 @@ class proveedoresController extends comprasController
                 echo "Ha ocurrido un error";
             }
             echo "Se elimino " . $result . " fila(s)";
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+
+    public function modificar_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            if ($this->getInt("cb_contribuyente") == 0) {
+                echo json_encode(array("error"=>"Debe seleccionar un contribuyente existente"));
+                exit;
+            }
+            $result = $this->_sql->modificar(
+                array(
+                    $this->getText("txtruc"),
+                    $this->getText("txtempresa"),
+                    $this->getText("txtrepresentante"),
+                    $this->getText("txtdireccion"),
+                    $this->getText("txtemail"),
+                    $this->getText("txttelefono"),
+                    $this->getText("txtcelular"),
+                    $this->getInt("cb_contribuyente"),
+                    $this->getInt("id")
+                )
+            );
+            if (!$result) {
+                echo json_encode(array("error"=>"Ha ocurrido un error" . $result));
+                exit;
+            }
+            echo json_encode("Se modifico " . $result . " fila(s)");
+            exit;
         } else {
             echo "Error Processing Request";
         }

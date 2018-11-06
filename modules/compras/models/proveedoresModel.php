@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * TODO:  MODULO DEL PROVEEDOR 
+ * PERMITE CREAR, LEER, ACTUALIZAR Y ELIMINAR (CRUD)
+ */
 class proveedoresModel extends Model
 {
 
@@ -8,10 +13,7 @@ class proveedoresModel extends Model
         parent::__construct();
     }
 
-    /**
-     * TODO: Consulta proveedor
-     * 
-     */
+    
     public function consulta()
     {
         try {
@@ -30,7 +32,7 @@ class proveedoresModel extends Model
             $sql = "CALL proveedores_proc('consulta_id',:id,null,null,null,null,null,null,null,null,null);";
             $stmt = $this->_db->prepare($sql);
             $stmt->execute(array(":id"=>$id));
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e) {
             echo "Error en la consulta " . $e->getMessage();
@@ -50,6 +52,9 @@ class proveedoresModel extends Model
             return null;
         }
     }
+    /**
+     * FIXME: ELIMINAR FUNCION 
+     */
     public function autocomplete($dato)
     {
         try {
@@ -82,11 +87,7 @@ class proveedoresModel extends Model
             return null;
         }
     }
-    
-    /**
-     * TODO: alterar tablas proveedores
-     * 
-     */
+   
     public function insertar(array $datos)
     {
         try {
@@ -122,23 +123,22 @@ class proveedoresModel extends Model
     public function modificar($datos)
     {
         try {
-            $stmt = $this->_db->prepare("CALL modificar_proveedores_proc(:id,:t_cont,:ruc,:r_soc,:repre,:dir,:email,:telf,:cel,:est);");
+            $stmt = $this->_db->prepare("CALL proveedores_proc('modificar',:id,:ruc,:r_soc,:repre,:dir,:email,:telf,:cel,null,:t_cont);");
             $result = $stmt->execute(array(
-                ":id" => $datos[0],
-                ":t_cont" => $datos[1],
-                ":ruc" => $datos[2],
-                ":r_soc" => $datos[3],
-                ":repre" => $datos[4],
-                ":dir" => $datos[5],
-                ":email" => $datos[6],
-                ":telf" => $datos[7],
-                ":cel" => $datos[8],
-                ":est" => $datos[9],
+                
+                ":ruc" => $datos[0],
+                ":r_soc" => $datos[1],
+                ":repre" => $datos[2],
+                ":dir" => $datos[3],
+                ":email" => $datos[4],
+                ":telf" => $datos[5],
+                ":cel" => $datos[6],
+                ":t_cont" => $datos[7],
+                ":id" => $datos[8]
             ));
             return $result;
         } catch (PDOException $e) {
-            echo "Error en la insercción " . $e->getMessage();
-            return 0;
+            return "Error en la insercción " . $e->getMessage();
         }
     }
 
