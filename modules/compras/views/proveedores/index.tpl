@@ -88,13 +88,13 @@
                     <h4 class="modal-title">Nuevo Proveedor</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="form-ins" action="{$_layoutParams.root}compras/proveedores/modificar_ajax">
-                        <input type="hidden" name="contribuyente_id" value="0" id="hiddent-cont-ins">
+                    <form class="form-horizontal" id="form-ins" method="{$_layoutParams.root}compras/proveedores/insertar_ajax">
+                        <!-- <input type="text" name="contribuyente_id" value="0" id="hiddent-cont-ins"> -->
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Tipo Contribuyente</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control custom-select" name="cb_contribuyente" id="">
+                                    <select class="form-control custom-select" name="contribuyente_id" id="">
                                         <option value="0">Selección:</option>
                                         {foreach item=x from=$tipo_cont}
                                         <option value="{$x['id']}">{$x["description"]}</option>

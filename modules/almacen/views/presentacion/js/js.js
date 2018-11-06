@@ -1,8 +1,9 @@
 $(document).ready(function () {
+    var pagina=1;
     $('[data-mask]').inputmask();
 
     function paginacion(dato) {
-        $.post(_root_ + "compras/proveedores/consulta_ajax", dato,
+        $.post(_root_ + "almacen/presentacion/consulta_ajax", dato,
             function (response) {
                 $("#contenedor").html("");
                 $("#contenedor").html(response);
@@ -12,10 +13,18 @@ $(document).ready(function () {
         var pag = "pagina=" + $(this).attr("pagina");
         paginacion(pag);
     });
+    $(document).delegate(".btn-select", "click", function (e) {
+        e.preventDefault();
+        var ruta = $(this).attr("href");
+        $.get(ruta,function(data){
+            console.log(data);
+            
+        },"json")
+    });
 
-    $("#inp-cont-ins").autocomplete({
+    $("#inp-des_p-ins").autocomplete({
         source: function (request, response) {
-            var ruta = _root_ + "compras/proveedores/autocomplete_ajax";
+            var ruta = _root_ + "almacen/presentacion/consulta_ajax";
             $.ajax({
                 url: ruta,
                 dataType: "json",
@@ -33,9 +42,26 @@ $(document).ready(function () {
                     dato: ui.item.label
                 },
                 function (data) {
-                    $("#hiddent-cont-ins").val(data.id);
+                    $("hiddent-des_p-ins").val(data.id);
                 },"json");
         }
     });
-
+    $("#btn-guardar-ins").on("click", function (e) {
+        e.preventDefault();
+        var formData = new FormData(document.getElementById("form-ins"));
+        var ruta = $("#form-ins").attr("method");
+        $.ajax({
+            url: ruta,
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'POST',
+            success: function (data) {
+                swal("En hora buena!", data, "success");
+                paginacion(pagina);
+                $("#form-ins")[0].reset();
+            }
+        })
+    });
 });

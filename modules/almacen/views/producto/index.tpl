@@ -11,7 +11,7 @@
 <section class="content">
     <div class="row">
                 <div class="col-sm-12">
-            <a href="{$_layoutParams.root}compras/proveedores/exel" class="btn btn-info"> 
+            <a href="{$_layoutParams.root}almacen/producto/exel" class="btn btn-info"> 
             <i class="fa fa-file-excel-o" aria-hidden="true"></i>
              Exel
             </a>
@@ -47,13 +47,13 @@
                     </tr>
                     {foreach item=x from=$consulta}
                     <tr>
-                        <td>{$x["id_prod"]}</td>
+                        <td>{$x["id"]}</td>
                         <td>{$x["id_cate"]}</td>
                         <td>{$x["id_pres"]}</td>
                         <td>{$x["id_marc"]}</td>
                         <td>{$x["description"]}</td>
-                        <td>{$x["min_prod"]}</td>
-                        <td>{$x["max_prod"]}</td>
+                        <td>{$x["minProd"]}</td>
+                        <td>{$x["maxProd"]}</td>
                         <td>{$x["stock"]}</td>
                     </tr>
                     {/foreach}
@@ -73,27 +73,40 @@
                     <h4 class="modal-title">Nuevo Producto</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
-                        <input type="hidden" name="producto_id" value="0" id="hiddent-cont-ins">
+                    <form class="form-horizontal" id="form-ins" method="{$_layoutParams.root}almacen/producto/insertar_ajax">
+                        <input type="hidden" name="" value="0" id="hiddent-prod-ins">
                         <div class="box-body">
                             <div class="form-group">
-                                <label for="" class="col-sm-4 control-label">Categoria</label>
+                                <label for="" class="col-sm-4 control-label">Tipo de Categoria</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtcategoria" class="form-control" id="inp-cat-ins"
-                                        placeholder="Categoria">
+                                    <select class="form-control custom-select" name="categoria_id" id="">
+                                        <option value="0">Selección:</option>
+                                        {foreach item=x from=$cate}
+                                        <option value="{$x['id']}">{$x["description"]}</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Presentacion</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtpresentacion" class="form-control" id="inp-pre-ins" placeholder="Presentacion">
+                                    <select class="form-control custom-select" name="presentacion_id" id="">
+                                        <option value="0">Selección:</option>
+                                        {foreach item=x from=$pres}
+                                        <option value="{$x['id']}">{$x["description"]}</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Marca</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtmarca" class="form-control" id="inp-mar-ins"
-                                        placeholder="Marca">
+                                   <select class="form-control custom-select" name="marca_id" id="">
+                                        <option value="0">Selección:</option>
+                                        {foreach item=x from=$marc}
+                                        <option value="{$x['id']}">{$x["description"]}</option>
+                                        {/foreach}
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -130,7 +143,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times-circle-o"></i>
                         Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" id="btn-guardar-ins" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
                 </div>
             </div>
         </div>

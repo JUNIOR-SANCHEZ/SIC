@@ -23,13 +23,13 @@
                     </tr>
                     {foreach item=x from=$consulta}
                     <tr>
-                        <td>{$x["id_prod"]}</td>
+                        <td>{$x["id"]}</td>
                         <td>{$x["id_cate"]}</td>
                         <td>{$x["id_pres"]}</td>
                         <td>{$x["id_marc"]}</td>
                         <td>{$x["description"]}</td>
-                        <td>{$x["min_prod"]}</td>
-                        <td>{$x["max_prod"]}</td>
+                        <td>{$x["minProd"]}</td>
+                        <td>{$x["maxProd"]}</td>
                         <td>{$x["stock"]}</td>
                     </tr>
                     {/foreach}
