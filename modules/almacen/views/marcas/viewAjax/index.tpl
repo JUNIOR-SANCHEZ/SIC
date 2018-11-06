@@ -14,13 +14,13 @@
                     <tr>
                         <th style="width: 10px">#</th>
                         <th>Descripcion</th>
-                        <th>Estado</th>
+                       
                     </tr>
                     {foreach item=x from=$consulta}
                     <tr>
                         <td>{$x["id"]}</td>
                         <td>{$x["description"]}</td>
-                        <td>{if $x["state"]== 0}Inactivo{else}Activo{/if}</td>
+                     
                     </tr>
                     {/foreach}
                 </table>

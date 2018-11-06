@@ -4,7 +4,7 @@ class marcasController extends almacenController {
     public function __construct(){
         parent::__construct();
         $this->_sql = $this->loadModel("marcas");
-        $this->_view->setJsPlugin(array("jquery.inputmask"));
+        $this->_view->setJsPlugin(array("jquery.inputmask", "jqBootstrapValidation"));
     }
     public function index() 
     {
@@ -27,10 +27,32 @@ class marcasController extends almacenController {
             echo "Error Processing Request";
         }
     }
-    public function insertar()
+    public function consulta_id_ajax($id)
     {
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $result = $this->_sql->consulta_id($id);
+            echo json_encode($result);
+            exit;
 
+            
+        } else {
+            echo "Error Processing Request";
+        }
+    }
+    public function insertar_ajax()
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $result = $this->_sql->insertar(
+                array(
+                    $this->getText("txtdescripcion"),
+                    )
+                );
+                if (!$result) {
+                    echo "Ha ocurrido un error inexperado";
+                    exit;
+                }
+                echo "Se registro " . $result . " fila(s)";
+                exit;
         } else {
             echo "Error Processing Request";
         }
@@ -55,5 +77,17 @@ class marcasController extends almacenController {
     {
         require_once ROOT . "public" . DS . "files" . DS . "excelreport"  . DS . "01simple-download-xlsx.php";
 
+    }
+    public function eliminar_ajax($id)
+    {
+        if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
+            $result = $this->_sql->eliminar($id);
+            if (!$result) {
+                echo "Ha ocurrido un error";
+            }
+            echo "Se elimino " . $result . " fila(s)";
+        } else {
+            echo "Error Processing Request";
+        }
     }
 }

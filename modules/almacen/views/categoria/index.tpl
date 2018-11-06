@@ -44,7 +44,14 @@
                                 <tr>
                                  <td>{$x["id"]}</td>
                                     <td>{$x["description"]}</td>
-                                    <td>{if $x["state"]== 0}Inactivo{else}Activo{/if}</td>
+                                         <td>
+                                        <input type="checkbox" class="checked" style="display: none;" data-id="{$x['id']}"
+                                            id="chec_{$x['id']}" {if $x['state']==1} checked {/if}/> {if $x["state"]==0}
+                                            <label class="label label-danger" for="chec_{$x['id']}">Inactivo</label>
+                                        {else}
+                                        <label for="chec_{$x['id']}" class="label label-success">Activo</label>
+                                        {/if}
+                                    </td>
                                 </tr>
                                 {/foreach}
                             </table>
@@ -63,13 +70,13 @@
                     <h4 class="modal-title">Nueva Categoria</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal">
-                        <input type="hidden" name="categoria_id" value="0" id="hiddent-cont-ins">
+                    <form class="form-horizontal" id="form-ins" method="{$_layoutParams.root}almacen/categoria/insertar_ajax">
+                        <input type="hidden" name="categoria_id" value="0" id="hiddent-des_c-ins">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Descripcion</label>
                                 <div class="col-sm-8">
-                                    <input type="text" name="txtdescripcion" class="form-control" id="inp-cont-ins"
+                                    <input type="text" name="txtdescripcion" class="form-control" id="inp-des_c-ins"
                                         placeholder="Ingrese Descripcion">
                                 </div>
                         </div>
@@ -78,7 +85,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-times-circle-o"></i>
                         Cerrar</button>
-                    <button type="button" class="btn btn-primary"><i class="fa fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-primary" id="btn-guardar-ins"><i class="fa fa-save"></i> Guardar</button>
                 </div>
             </div>
         </div>
