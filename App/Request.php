@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * Request
+ * @autor Julio Sánchez Gaona
+ * 
+ */
 class Request {
 
     private $_modulo;
@@ -8,6 +12,11 @@ class Request {
     private $_argumentos;
     private $_modules;
 
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct() {
         if (isset($_GET['url'])) {
 
@@ -55,18 +64,38 @@ class Request {
         }
     }
 
+    /**
+     * getControlador
+     *
+     * @return void
+     */
     public function getControlador() {
         return $this->_controlador;
     }
 
+    /**
+     * getMetodo
+     *
+     * @return void
+     */
     public function getMetodo() {
         return $this->_metodo;
     }
 
+    /**
+     * getArgs
+     *
+     * @return void
+     */
     public function getArgs() {
         return $this->_argumentos;
     }
     
+    /**
+     * getModulo
+     *
+     * @return void
+     */
     public function getModulo()
     {
         return $this->_modulo;

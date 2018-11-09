@@ -9,7 +9,7 @@ class productoModel extends Model
     public function consulta()
     {
         try {
-            $sql="CALL productos_proc('consulta_simple',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
+            $sql="CALL productos_proc('consultas',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);";
             $stmt = $this->_db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
             return $stmt;
         } catch (PDOException $e) {

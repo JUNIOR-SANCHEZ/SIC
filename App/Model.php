@@ -5,6 +5,11 @@ class Model
 
     private $_registry;
     protected $_db;
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->_registry = Registry::getInstancia();

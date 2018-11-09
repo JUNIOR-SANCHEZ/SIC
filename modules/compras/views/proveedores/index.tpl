@@ -39,28 +39,19 @@
                                     <th style="width: 10px">#</th>
                                     <th>Ruc</th>
                                     <th>Empresa</th>
+                                    <th>Estado</th>
                                     <th>Representante</th>
                                     <th>Dirección</th>
                                     <th>Correo</th>
                                     <th>Teléfono</th>
                                     <th>Celular</th>
-                                    <th>Estado</th>
                                 </tr>
+                                {if isset($consulta) && !empty($consulta)}
                                 {foreach item=x from=$consulta}
                                 <tr>
                                     <td>{$x["id"]}</td>
-                                    <td>
-                                        <a data-prov="{$_layoutParams.root}compras/proveedores/consulta_id_ajax/{$x['id']}"
-                                            class="btn-select btn btn-link" data-toggle="modal" data-target="#modal-mod">
-                                            {$x["ruc"]}
-                                        </a>
-                                    </td>
+                                    <td>{$x["ruc"]}</td>
                                     <td>{$x["business_name"]}</td>
-                                    <td>{$x["representative"]}</td>
-                                    <td>{$x["address"]}</td>
-                                    <td>{$x["email"]}</td>
-                                    <td>{$x["phone"]}</td>
-                                    <td>{$x["mobile"]|default:"null"}</td>
                                     <td>
                                         <input type="checkbox" class="checked" style="display: none;" data-id="{$x['id']}"
                                             id="chec_{$x['id']}" {if $x['state']==1} checked {/if}/> {if $x["state"]==0}
@@ -69,9 +60,30 @@
                                         <label for="chec_{$x['id']}" class="label label-success">Activo</label>
                                         {/if}
                                     </td>
+                                    <td>{$x["representative"]}</td>
+                                    <td>{$x["address"]}</td>
+                                    <td>{$x["email"]}</td>
+                                    <td>{$x["phone"]}</td>
+                                    <td>{$x["mobile"]|default:"null"}</td>
+                                    
+                                    <td>
+                                        <a data-prov="{$_layoutParams.root}compras/proveedores/consulta_id_ajax/{$x['id']}"
+                                            class="btn-select btn btn-link" data-toggle="modal" data-target="#modal-mod">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
+                                    </td>
 
                                 </tr>
                                 {/foreach}
+                                {else}
+                                <tr>
+                                    <th colspan="8">
+                                        <h1 class="text-center">
+                                            No hay datos que mostrar
+                                        </h1>
+                                    </th>
+                                </tr>
+                                {/if}
                             </table>
                         </div>
                     </div>
@@ -88,13 +100,12 @@
                     <h4 class="modal-title">Nuevo Proveedor</h4>
                 </div>
                 <div class="modal-body">
-                    <form class="form-horizontal" id="form-ins" method="{$_layoutParams.root}compras/proveedores/insertar_ajax">
-                        <!-- <input type="text" name="contribuyente_id" value="0" id="hiddent-cont-ins"> -->
+                    <form class="form-horizontal" id="form-ins" action="{$_layoutParams.root}compras/proveedores/insertar_ajax">
                         <div class="box-body">
                             <div class="form-group">
                                 <label for="" class="col-sm-4 control-label">Tipo Contribuyente</label>
                                 <div class="col-sm-8">
-                                    <select class="form-control custom-select" name="contribuyente_id" id="">
+                                    <select class="form-control custom-select" name="cb_contribuyente" id="">
                                         <option value="0">Selección:</option>
                                         {foreach item=x from=$tipo_cont}
                                         <option value="{$x['id']}">{$x["description"]}</option>
@@ -226,14 +237,14 @@
                                 <label for="inputPassword3" class="col-sm-4 control-label">Teléfono</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="txttelefono" class="form-control" id="inp-tel-mod"
-                                        placeholder="Teléfono" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        placeholder="Teléfono" data-inputmask='"mask": "(02) 999-999"' data-mask>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="inputPassword3" class="col-sm-4 control-label">Celular</label>
                                 <div class="col-sm-8">
                                     <input type="text" name="txtcelular" class="form-control" id="inp-cel-mod"
-                                        placeholder="Celular" data-inputmask='"mask": "(999) 999-9999"' data-mask>
+                                        placeholder="Celular" data-inputmask='"mask": "(593) 999-999-9999"' data-mask>
                                 </div>
                             </div>
                         </div>

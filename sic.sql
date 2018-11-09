@@ -1,9 +1,5 @@
 /*
-<<<<<<< HEAD
 SQLyog Ultimate v11.11 (32 bit)
-=======
-SQLyog Ultimate v9.02 
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 MySQL - 5.5.5-10.1.36-MariaDB : Database - sic
 *********************************************************************
 */
@@ -29,19 +25,10 @@ CREATE TABLE `categorias` (
   `descripcion_categoria` varchar(20) CHARACTER SET latin1 NOT NULL,
   `estado_categoria` tinyint(4) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `categorias` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `categorias` */
-
-insert  into `categorias`(`id_categoria`,`descripcion_categoria`,`estado_categoria`) values (1,'Categoria_1',1),(2,'categoria_2',1),(3,'categoria_3',1);
-
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 /*Table structure for table `marcas` */
 
 DROP TABLE IF EXISTS `marcas`;
@@ -50,19 +37,10 @@ CREATE TABLE `marcas` (
   `id_marca` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion_marca` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id_marca`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `marcas` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `marcas` */
-
-insert  into `marcas`(`id_marca`,`descripcion_marca`) values (1,'marcas1'),(3,'marcas_3'),(4,'marcas4'),(5,'marcas5'),(6,'marca_6'),(7,'marca_7'),(8,'marcp_8'),(9,'marca_9'),(10,'marca_10'),(11,'marca_11'),(12,'marca_12'),(13,'marca_13'),(14,'marca_14'),(15,'marca_15');
-
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 /*Table structure for table `permisos` */
 
 DROP TABLE IF EXISTS `permisos`;
@@ -108,19 +86,10 @@ CREATE TABLE `presentaciones` (
   `id_presentacion` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion_presentacion` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id_presentacion`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `presentaciones` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `presentaciones` */
-
-insert  into `presentaciones`(`id_presentacion`,`descripcion_presentacion`) values (1,'presentacion_1'),(3,'ma'),(4,'presentacion_4'),(5,'presentacion_5'),(6,'presentacion_6'),(7,'presentacion_7'),(8,'presentacion_8'),(9,'presentacion_9'),(10,'presentacion_10'),(11,'presentacion_11'),(12,'presentacion_12'),(13,'presentacion_13'),(14,'presentacion_14'),(15,'presentacion_15'),(16,'presentacion_16'),(17,'presentacion_18'),(18,'hgtgg'),(19,'uyhg'),(20,'jyhtgrf');
-
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 /*Table structure for table `productos` */
 
 DROP TABLE IF EXISTS `productos`;
@@ -135,19 +104,10 @@ CREATE TABLE `productos` (
   `max_producto` int(11) NOT NULL,
   `stock_producto` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`)
-<<<<<<< HEAD
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `productos` */
 
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `productos` */
-
-insert  into `productos`(`id_producto`,`id_categoria`,`id_presentacion`,`id_marca`,`descripcion_producto`,`min_producto`,`max_producto`,`stock_producto`) values (1,2,3,5,'producto_natural_si',9,5,9),(2,2,3,5,'producto_natural',9,5,9),(3,2,3,5,'producto_natural',9,5,9),(4,2,3,5,'producto_natural',9,5,9),(5,2,3,5,'producto_natural',9,5,9),(6,2,3,5,'producto_natural',9,5,9),(7,2,3,5,'producto_natural',9,5,9),(8,2,3,5,'producto_natural',9,5,9),(9,2,3,5,'producto_natural',9,5,9),(10,2,3,5,'producto_natural',9,5,9),(11,2,3,5,'producto_natural',9,5,9),(12,2,3,5,'producto_natural',9,5,9),(13,2,3,5,'producto_natural',9,5,9),(14,2,3,5,'producto_natural',9,5,9),(15,2,3,5,'producto_natural',9,5,9),(16,2,3,5,'producto_natural',9,5,9),(17,2,3,5,'producto_natural',9,5,9),(18,2,17,1,'producto_20',1,44,1);
-
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 /*Table structure for table `proveedores` */
 
 DROP TABLE IF EXISTS `proveedores`;
@@ -164,19 +124,11 @@ CREATE TABLE `proveedores` (
   `estado_proveedor` tinyint(4) NOT NULL,
   `tipo_contribuyente_proveedor` int(11) NOT NULL,
   PRIMARY KEY (`id_proveedores`)
-<<<<<<< HEAD
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `proveedores` */
 
-insert  into `proveedores`(`id_proveedores`,`ruc_proveedor`,`razon_social_proveedor`,`representante_proveedor`,`direccion_proveedor`,`email_proveedor`,`telefono_proveedor`,`celular_proveedor`,`estado_proveedor`,`tipo_contribuyente_proveedor`) values (5,'085555555-001','narc','dvks','scjn','nmxz,','(444) 444-4444','(444) 444-4444',1,1),(6,'555555555-001','5dd','dddddddd','sssssssss','sdddddddddd','(111) 111-1111','(111) 111-111_',0,1),(7,'444444444-001','5wwwwwwwwwww','wwwwwwwwww','eeeeeeeeeeee','dddddddddddd`d','(444) 444-44__','(444) 444-4444',0,1),(8,'777777777-001','xxxxxx','x','xx','xxxxxxxxxx','(555) 555-555_','(555) 555-5555',1,1);
-=======
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
-
-/*Data for the table `proveedores` */
-
-insert  into `proveedores`(`id_proveedores`,`ruc_proveedor`,`razon_social_proveedor`,`representante_proveedor`,`direccion_proveedor`,`email_proveedor`,`telefono_proveedor`,`celular_proveedor`,`estado_proveedor`,`tipo_contribuyente_proveedor`) values (5,'0705597706001','sis','JG','tendales','josed1096@hotmail.co','0939806183','0939806183',1,1),(6,'555555555-001','5dd','dddddddd','sssssssss','sdddddddddd','(111) 111-1111','(111) 111-111_',1,1),(7,'444444444-001','5wwwwwwwwwww','wwwwwwwwww','eeeeeeeeeeee','dddddddddddd`d','(444) 444-44__','(444) 444-4444',1,1),(8,'777777777-001','xxxxxx','x','xx','xxxxxxxxxx','(555) 555-555_','(555) 555-5555',1,1),(9,'0705597706001','sis','JG','tendales','josed1096@hotmail.co','0939806183','0939806183',1,1),(10,'0705597706001','ninguna','jose_gallardo','tendales','josed1096@hotmail.co','2929745098','0939806183',1,1),(11,'070559770-001','jose sa','Jose','tendales','josed1096@hotmail.co','(093) 980-6183','(098) 765-4323',1,1),(12,'456789876-001','hjkl','njkm,l','oiuyt','hujik@hotmail.com','(876) 543-2456','(987) 654-3456',1,2);
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
+insert  into `proveedores`(`id_proveedores`,`ruc_proveedor`,`razon_social_proveedor`,`representante_proveedor`,`direccion_proveedor`,`email_proveedor`,`telefono_proveedor`,`celular_proveedor`,`estado_proveedor`,`tipo_contribuyente_proveedor`) values (1,'0706674819-001','Electronic','Javier Mendoza','Av. Arizaga entre 10','electronic@email.com','(02) 937-333','(593) 096-768-7882',1,2);
 
 /*Table structure for table `roles` */
 
@@ -203,7 +155,8 @@ CREATE TABLE `tipo_contribuyente` (
 
 /*Data for the table `tipo_contribuyente` */
 
-insert  into `tipo_contribuyente`(`id_t_contribuyente`,`descripcion_t_contribuyente`,`estado_t_contribuyente`) values (1,'Persona Juridica',1),(2,'Persona Regular',1);
+insert  into `tipo_contribuyente`(`id_t_contribuyente`,`descripcion_t_contribuyente`,`estado_t_contribuyente`) values (1,'Persona Juridica',1);
+insert  into `tipo_contribuyente`(`id_t_contribuyente`,`descripcion_t_contribuyente`,`estado_t_contribuyente`) values (2,'Persona Regular',1);
 
 /*Table structure for table `usuarios` */
 
@@ -228,35 +181,6 @@ CREATE TABLE `usuarios` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `usuarios` */
-
-<<<<<<< HEAD
-/* Procedure structure for procedure `insertar` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `insertar` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar`()
-BEGIN
-	DECLARE i INT DEFAULT 0;
-	 
-	WHILE i<99 DO
-	      CALL insertar_proveedores_proc("1","0706674819001","Abasist Distribuidores de Cómputo","Julio Sanchez Gaona","Tlaxco 314 Col. La Paz - México","gerenciasd@abasist.com"," 01 (222) 409 79 35","");
-	      SET i=i+1;
-	END WHILE;
-=======
-/* Procedure structure for procedure `categorias_consulta_x_contenido_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `categorias_consulta_x_contenido_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `categorias_consulta_x_contenido_proc`(descr varchar(50))
-BEGIN
-	select id_categoria as id, descripcion_categoria as description from categorias 
-	where descripcion_categoria = descr and estado_categoria = 1;
-    END */$$
-DELIMITER ;
 
 /* Procedure structure for procedure `categorias_proc` */
 
@@ -324,16 +248,20 @@ BEGIN
     END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `marcas_consulta_x_contenido_proc` */
+/* Procedure structure for procedure `insertar` */
 
-/*!50003 DROP PROCEDURE IF EXISTS  `marcas_consulta_x_contenido_proc` */;
+/*!50003 DROP PROCEDURE IF EXISTS  `insertar` */;
 
 DELIMITER $$
 
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `marcas_consulta_x_contenido_proc`(descr varchar(50))
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertar`()
 BEGIN
-	select id_marca as id,descripcion_marca as description from marcas
-	where descripcion_marca = descr;
+	DECLARE i INT DEFAULT 0;
+	 
+	WHILE i<99 DO
+	      CALL insertar_proveedores_proc("1","0706674819001","Abasist Distribuidores de Cómputo","Julio Sanchez Gaona","Tlaxco 314 Col. La Paz - México","gerenciasd@abasist.com"," 01 (222) 409 79 35","");
+	      SET i=i+1;
+	END WHILE;
     END */$$
 DELIMITER ;
 
@@ -394,19 +322,6 @@ BEGIN
     END */$$
 DELIMITER ;
 
-/* Procedure structure for procedure `presentaciones_consulta_x_contenido_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `presentaciones_consulta_x_contenido_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `presentaciones_consulta_x_contenido_proc`(descr varchar(50))
-BEGIN
-	select id_presentacion as id,descripcion_presentacion as description from presentaciones
-	where descripcion_presentacion = descr;
-    END */$$
-DELIMITER ;
-
 /* Procedure structure for procedure `presentaciones_proc` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `presentaciones_proc` */;
@@ -463,6 +378,30 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `tipo_contribuyente_proc` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_proc` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_proc`( 
+accion varchar(50),
+id int,
+descripsion varchar(50),
+estado tinyint
+)
+BEGIN
+	if accion = "consulta" then
+	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente where estado_t_contribuyente = 1;
+	end if;
+	
+	if accion = "consulta_desc" then
+	SELECT descripcion_t_contribuyente AS description FROM tipo_contribuyente WHERE descripcion_t_contribuyente LIKE CONCAT("%",descripsion,"%");
+	end if;
+	
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `productos_proc` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `productos_proc` */;
@@ -484,7 +423,7 @@ BEGIN
 	DELETE FROM productos WHERE id_producto = id_prod;
 	END IF;
 	
-	IF accion = "consulta_simple" THEN
+	IF accion = "consultas" THEN
 	SELECT 
 	id_producto AS id,
 	id_categoria AS id_cate,
@@ -533,44 +472,6 @@ BEGIN
 	 stock 
 	);
 	END IF;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `tipo_contribuyente_consulta_x_contenido_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_consulta_x_contenido_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_consulta_x_contenido_proc`(descr varchar(50))
-BEGIN
-	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente 
-	where descripcion_t_contribuyente = descr and estado_t_contribuyente = 1;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `tipo_contribuyente_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_proc`( 
-accion varchar(50),
-id int,
-descripsion varchar(50),
-estado tinyint
-)
-BEGIN
-	if accion = "consulta" then
-	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente where estado_t_contribuyente = 1;
-	end if;
-	
-	if accion = "consulta_desc" then
-	SELECT descripcion_t_contribuyente AS description FROM tipo_contribuyente WHERE descripcion_t_contribuyente LIKE CONCAT("%",descripsion,"%");
-	end if;
-	
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
     END */$$
 DELIMITER ;
 
@@ -663,46 +564,6 @@ BEGIN
     END */$$
 DELIMITER ;
 
-<<<<<<< HEAD
-/* Procedure structure for procedure `tipo_contribuyente_consulta_x_contenido_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_consulta_x_contenido_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_consulta_x_contenido_proc`(descr varchar(50))
-BEGIN
-	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente 
-	where descripcion_t_contribuyente = descr and estado_t_contribuyente = 1;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `tipo_contribuyente_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_proc`( 
-accion varchar(50),
-id int,
-descripsion varchar(50),
-estado tinyint
-)
-BEGIN
-	if accion = "consulta" then
-	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente where estado_t_contribuyente = 1;
-	end if;
-	
-	if accion = "consulta_desc" then
-	SELECT descripcion_t_contribuyente AS description FROM tipo_contribuyente WHERE descripcion_t_contribuyente LIKE CONCAT("%",descripsion,"%");
-	end if;
-	
-    END */$$
-DELIMITER ;
-
-=======
->>>>>>> 4df654b2b7cce2d32717b8ed0d0b13f83fc254fb
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;

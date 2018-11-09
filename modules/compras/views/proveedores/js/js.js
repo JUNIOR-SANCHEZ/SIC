@@ -4,8 +4,8 @@ $(document).ready(function () {
     var pagina = 1;
 
     $('[data-mask]').inputmask();
-    $("#inp-ruc-ins").inputmask("999999999-001");
-    $("#inp-ruc-mod").inputmask("999999999-001");
+    $("#inp-ruc-ins").inputmask("9999999999-001");
+    $("#inp-ruc-mod").inputmask("9999999999-001");
   
     function paginacion(dato) {
         $.post(_root_ + "compras/proveedores/consulta_ajax", dato,
@@ -89,6 +89,11 @@ $(document).ready(function () {
         e.preventDefault();
         var formData = new FormData(document.getElementById("form-ins"));
         var ruta = $("#form-ins").attr("action");
+        for (let value of formData.entries()) {
+            console.log(value);
+            
+            
+        }
         $.ajax({
             url: ruta,
             data: formData,

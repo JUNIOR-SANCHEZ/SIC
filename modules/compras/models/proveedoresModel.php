@@ -1,19 +1,17 @@
 <?php
 
 /**
- * TODO:  MODULO DEL PROVEEDOR 
+ * TODO:  MODULO DEL PROVEEDOR
  * PERMITE CREAR, LEER, ACTUALIZAR Y ELIMINAR (CRUD)
  */
 class proveedoresModel extends Model
 {
 
-    
     public function __construct()
     {
         parent::__construct();
     }
 
-    
     public function consulta()
     {
         try {
@@ -31,7 +29,7 @@ class proveedoresModel extends Model
         try {
             $sql = "CALL proveedores_proc('consulta_id',:id,null,null,null,null,null,null,null,null,null);";
             $stmt = $this->_db->prepare($sql);
-            $stmt->execute(array(":id"=>$id));
+            $stmt->execute(array(":id" => $id));
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result;
         } catch (PDOException $e) {
@@ -53,7 +51,7 @@ class proveedoresModel extends Model
         }
     }
     /**
-     * FIXME: ELIMINAR FUNCION 
+     * FIXME: ELIMINAR FUNCION
      */
     public function autocomplete($dato)
     {
@@ -87,7 +85,7 @@ class proveedoresModel extends Model
             return null;
         }
     }
-   
+
     public function insertar(array $datos)
     {
         try {
@@ -125,7 +123,7 @@ class proveedoresModel extends Model
         try {
             $stmt = $this->_db->prepare("CALL proveedores_proc('modificar',:id,:ruc,:r_soc,:repre,:dir,:email,:telf,:cel,null,:t_cont);");
             $result = $stmt->execute(array(
-                
+
                 ":ruc" => $datos[0],
                 ":r_soc" => $datos[1],
                 ":repre" => $datos[2],
@@ -134,15 +132,13 @@ class proveedoresModel extends Model
                 ":telf" => $datos[5],
                 ":cel" => $datos[6],
                 ":t_cont" => $datos[7],
-                ":id" => $datos[8]
+                ":id" => $datos[8],
             ));
             return $result;
         } catch (PDOException $e) {
             return "Error en la insercción " . $e->getMessage();
         }
     }
-
-    
 
     public function estado(array $datos)
     {
