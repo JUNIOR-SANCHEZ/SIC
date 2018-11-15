@@ -89,11 +89,6 @@ $(document).ready(function () {
         e.preventDefault();
         var formData = new FormData(document.getElementById("form-ins"));
         var ruta = $("#form-ins").attr("action");
-        for (let value of formData.entries()) {
-            console.log(value);
-            
-            
-        }
         $.ajax({
             url: ruta,
             data: formData,

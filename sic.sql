@@ -25,9 +25,34 @@ CREATE TABLE `categorias` (
   `descripcion_categoria` varchar(20) CHARACTER SET latin1 NOT NULL,
   `estado_categoria` tinyint(4) NOT NULL,
   PRIMARY KEY (`id_categoria`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `categorias` */
+
+insert  into `categorias`(`id_categoria`,`descripcion_categoria`,`estado_categoria`) values (1,'Motos',1);
+
+/*Table structure for table `clientes` */
+
+DROP TABLE IF EXISTS `clientes`;
+
+CREATE TABLE `clientes` (
+  `id_cliente` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre_cliente` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `apellido_cliente` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `cedula_cliente` varchar(10) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `direccion_cliente` text COLLATE utf8_spanish_ci,
+  `telefono_cliente` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `celular_cliente` varchar(15) COLLATE utf8_spanish_ci DEFAULT NULL,
+  `email_cliente` varchar(50) COLLATE utf8_spanish_ci DEFAULT NULL,
+  PRIMARY KEY (`id_cliente`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+/*Data for the table `clientes` */
+
+insert  into `clientes`(`id_cliente`,`nombre_cliente`,`apellido_cliente`,`cedula_cliente`,`direccion_cliente`,`telefono_cliente`,`celular_cliente`,`email_cliente`) values (1,'Victor Mauel','Aguire Maldonado','07054815','Manta','325658','09558555555','vm@email.com');
+insert  into `clientes`(`id_cliente`,`nombre_cliente`,`apellido_cliente`,`cedula_cliente`,`direccion_cliente`,`telefono_cliente`,`celular_cliente`,`email_cliente`) values (2,'Victor Mauel','Aguire Maldonado','0706655','Cuenca','325658','09558555555','vic@email.com');
+insert  into `clientes`(`id_cliente`,`nombre_cliente`,`apellido_cliente`,`cedula_cliente`,`direccion_cliente`,`telefono_cliente`,`celular_cliente`,`email_cliente`) values (3,'Carlos Manuel','Duran Mejia','070888888','Ambato','525662','089225533','cd@email.com');
+insert  into `clientes`(`id_cliente`,`nombre_cliente`,`apellido_cliente`,`cedula_cliente`,`direccion_cliente`,`telefono_cliente`,`celular_cliente`,`email_cliente`) values (4,'Luis Fernando','Aguirre Mena','070845651','Manabí','07774563','07555','luag@email.com');
 
 /*Table structure for table `marcas` */
 
@@ -37,9 +62,11 @@ CREATE TABLE `marcas` (
   `id_marca` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion_marca` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id_marca`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `marcas` */
+
+insert  into `marcas`(`id_marca`,`descripcion_marca`) values (1,'Honda');
 
 /*Table structure for table `permisos` */
 
@@ -86,9 +113,11 @@ CREATE TABLE `presentaciones` (
   `id_presentacion` int(11) NOT NULL AUTO_INCREMENT,
   `descripcion_presentacion` varchar(20) CHARACTER SET latin1 NOT NULL,
   PRIMARY KEY (`id_presentacion`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `presentaciones` */
+
+insert  into `presentaciones`(`id_presentacion`,`descripcion_presentacion`) values (1,'Roja con negro');
 
 /*Table structure for table `productos` */
 
@@ -104,9 +133,12 @@ CREATE TABLE `productos` (
   `max_producto` int(11) NOT NULL,
   `stock_producto` int(11) NOT NULL,
   PRIMARY KEY (`id_producto`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
 
 /*Data for the table `productos` */
+
+insert  into `productos`(`id_producto`,`id_categoria`,`id_presentacion`,`id_marca`,`descripcion_producto`,`min_producto`,`max_producto`,`stock_producto`) values (1,0,0,0,'',0,0,0);
+insert  into `productos`(`id_producto`,`id_categoria`,`id_presentacion`,`id_marca`,`descripcion_producto`,`min_producto`,`max_producto`,`stock_producto`) values (2,1,1,1,'Cross',2,5,3);
 
 /*Table structure for table `proveedores` */
 
@@ -248,6 +280,71 @@ BEGIN
     END */$$
 DELIMITER ;
 
+/* Procedure structure for procedure `clientes_proc` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `clientes_proc` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `clientes_proc`(
+    accion varchar(20),
+    id int,
+    nombre varchar(50),
+    apellido varchar(50),
+    cedula varchar(10),
+    direccion text,
+    telefono varchar(15),
+    celular varchar(15),
+    correo varchar(50)
+    )
+BEGIN
+	case accion 
+	when "consultas" then
+		select 
+		id_cliente as id, 
+		nombre_cliente as `name`, 
+		apellido_cliente as lastname, 
+		cedula_cliente as card, 
+		direccion_cliente as address, 
+		telefono_cliente as phone, 
+		celular_cliente as mobile,
+		email_cliente as email
+		from clientes;
+	
+	when "consulta" then
+		SELECT 
+		id_cliente AS id, 
+		nombre_cliente AS `name`, 
+		apellido_cliente AS lastname, 
+		cedula_cliente AS card, 
+		direccion_cliente AS address, 
+		telefono_cliente AS phone, 
+		celular_cliente AS mobile,
+		email_cliente AS email
+		FROM clientes where id_cliente = id;
+	
+	WHEN "insertar" then
+		insert into clientes 
+		(nombre_cliente,apellido_cliente,
+		cedula_cliente,direccion_cliente,
+		telefono_cliente,celular_cliente,
+		email_cliente) 
+		values
+		(nombre,apellido,
+		 cedula,direccion,
+		 telefono,celular,
+		 correo);
+	
+	when "modificar" then
+		update clientes set 
+		nombre_cliente = nombre, apellido_cliente = apellido,
+		cedula_cliente = cedula, direccion_cliente = direccion,
+		telefono_cliente = telefono, celular_cliente = celular,
+		email_cliente = correo where id_cliente = id;
+	end case;
+    END */$$
+DELIMITER ;
+
 /* Procedure structure for procedure `insertar` */
 
 /*!50003 DROP PROCEDURE IF EXISTS  `insertar` */;
@@ -262,6 +359,30 @@ BEGIN
 	      CALL insertar_proveedores_proc("1","0706674819001","Abasist Distribuidores de Cómputo","Julio Sanchez Gaona","Tlaxco 314 Col. La Paz - México","gerenciasd@abasist.com"," 01 (222) 409 79 35","");
 	      SET i=i+1;
 	END WHILE;
+    END */$$
+DELIMITER ;
+
+/* Procedure structure for procedure `tipo_contribuyente_proc` */
+
+/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_proc` */;
+
+DELIMITER $$
+
+/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_proc`( 
+accion varchar(50),
+id int,
+descripsion varchar(50),
+estado tinyint
+)
+BEGIN
+	if accion = "consulta" then
+	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente where estado_t_contribuyente = 1;
+	end if;
+	
+	if accion = "consulta_desc" then
+	SELECT descripcion_t_contribuyente AS description FROM tipo_contribuyente WHERE descripcion_t_contribuyente LIKE CONCAT("%",descripsion,"%");
+	end if;
+	
     END */$$
 DELIMITER ;
 
@@ -375,30 +496,6 @@ BEGIN
 	descripcion
 	);
 	END IF;
-    END */$$
-DELIMITER ;
-
-/* Procedure structure for procedure `tipo_contribuyente_proc` */
-
-/*!50003 DROP PROCEDURE IF EXISTS  `tipo_contribuyente_proc` */;
-
-DELIMITER $$
-
-/*!50003 CREATE DEFINER=`root`@`localhost` PROCEDURE `tipo_contribuyente_proc`( 
-accion varchar(50),
-id int,
-descripsion varchar(50),
-estado tinyint
-)
-BEGIN
-	if accion = "consulta" then
-	select id_t_contribuyente as id, descripcion_t_contribuyente as description from tipo_contribuyente where estado_t_contribuyente = 1;
-	end if;
-	
-	if accion = "consulta_desc" then
-	SELECT descripcion_t_contribuyente AS description FROM tipo_contribuyente WHERE descripcion_t_contribuyente LIKE CONCAT("%",descripsion,"%");
-	end if;
-	
     END */$$
 DELIMITER ;
 

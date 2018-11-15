@@ -70,7 +70,7 @@ class proveedoresModel extends Model
             return null;
         }
     }
-
+    //FIXME: FUNCION SIN UTILIZAR 
     public function consulta_fila($dato)
     {
         try {
